@@ -1,5 +1,5 @@
 class Game
-  attr_accessor :human, :computer, :current
+  attr_accessor :human, :computer, :current, :other_player
 
   def initialize
     @human = Player.new('human')
@@ -12,26 +12,54 @@ class Game
   end
 
   def next_turn
-    @current = @current == @human ? @computer : @human
+    @current = @current === @human ? @computer : @human
+  end
+
+  def other_player
+    @current === @human ? @computer : @human
   end
 
   def next
-    @current.shoot
+    shot = @current.shoot    
+    defense = other_player.defend
+    check_shot(shot, defense)    
     next_turn
+  end
+   
+  def check_shot(shot, defense)        
+    if shot.x == defense.x and shot.y == defense.y
+      #handle defense  
+    else  
+      @current.made_goal
+    end        
   end
     
 end
 
 class Player
-  attr_accessor :name, :shots
+  attr_accessor :name, :shots, :defences, :score
   
   def initialize(name)
+    @score = 0
     @name = name
     @shots = []
+    @defences = []
   end
 
   def shoot    
-    @shots.push Shot.new
+    shot = Shot.new
+    @shots << shot    
+    shot
+  end
+
+  def defend    
+    defense = Defend.new
+    @defences << defense
+    defense
+  end
+
+  def made_goal
+    @score += 1
   end
 
 end
@@ -44,3 +72,6 @@ class Shot
   end
 
 end  
+
+class Defend < Shot
+end

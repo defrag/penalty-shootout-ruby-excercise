@@ -14,4 +14,14 @@ describe Player do
     p.shots.count.should == 1
   end 
 
+  it "should return Shot on shoot" do
+    p = Player.new('human')
+    p.shoot.should be_instance_of(Shot)    
+  end 
+
+  it "should return Defend on shoot" do
+    p = Player.new('human')
+    p.defend.should be_instance_of(Defend)    
+  end 
+
 end    

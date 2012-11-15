@@ -26,9 +26,38 @@ describe Game do
 
   it "should be able to perform next action" do
     game = Game.new
-    game.current.should_receive(:shoot)
+    game.current.should_receive(:shoot).and_return(Shot.new)
+    game.other_player.should_receive(:defend).and_return(Defend.new)
     game.should_receive(:next_turn)
     game.next
+  end  
+
+  it "should increment players score if shot was successfull" do
+    game = Game.new
+    
+    defend = double("Defend", x:2, y:4)
+    shot = double("Shot", x:1, y:2)
+    
+    game.current.should_receive(:shoot).and_return(shot)
+    game.other_player.should_receive(:defend).and_return(defend)
+    player = game.current
+
+    game.next
+    player.score.should == 1
+  end  
+
+  it "should not increment players score if shot was successfull" do
+    game = Game.new
+    
+    defend = double("Defend", x:2, y:4)
+    shot = double("Shot", x:2, y:4)
+    
+    game.current.should_receive(:shoot).and_return(shot)
+    game.other_player.should_receive(:defend).and_return(defend)
+    player = game.current
+
+    game.next
+    player.score.should == 0
   end  
 
 end    
