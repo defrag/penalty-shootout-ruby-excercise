@@ -20,4 +20,10 @@ describe 'Shootout App' do
     page.should have_link('Create new game')    
   end
 
+  it "should redirect to new game after clicking new game link" do
+    visit '/'
+    click_link 'Create new game'
+    page.should have_content('Now playing')    
+  end  
+
 end
