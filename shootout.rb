@@ -1,10 +1,11 @@
 class Game
-  attr_accessor :human, :computer, :current, :other_player
+  attr_accessor :human, :computer, :current, :other_player, :log
 
   def initialize
     @human = Player.new('human')
     @computer = Player.new('computer')                
     @current = [*@human, @computer].sample
+    @log = []
   end
 
   def whos_turn?
@@ -27,9 +28,12 @@ class Game
   end
    
   def check_shot(shot, defense)        
+
     if shot.x == defense.x and shot.y == defense.y
+      @log << "#{current.name} is shooting but #{other_player.name} saves the day!"
       #handle defense  
     else  
+      @log << "#{current.name} scooores!"
       @current.made_goal
     end        
   end

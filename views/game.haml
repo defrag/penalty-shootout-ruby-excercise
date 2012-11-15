@@ -5,3 +5,14 @@
   %body  
     %h1 Now playing
     
+    %p
+      Player score:
+      =@game.human.score
+    %p
+      Computer score:
+      =@game.computer.score
+
+    .log
+      %ul
+        - for string in @game.log
+          %li=string
