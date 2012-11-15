@@ -54,4 +54,5 @@ DEPENDENCIES
   haml
   rack-test
   rspec
+  rspec-mocks
   sinatra

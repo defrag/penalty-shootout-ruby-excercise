@@ -22,6 +22,13 @@ describe Game do
     current = game.current
     game.next_turn
     game.current.should_not === current
+  end
+
+  it "should be able to perform next action" do
+    game = Game.new
+    game.current.should_receive(:shoot)
+    game.should_receive(:next_turn)
+    game.next
   end  
 
 end    
