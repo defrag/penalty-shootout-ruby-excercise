@@ -1,6 +1,8 @@
 penalty-shootout-ruby-excercise
 ===============================
 
+[![Build Status](https://travis-ci.org/defrag/penalty-shootout-ruby-excercise.png)](https://travis-ci.org/defrag/penalty-shootout-ruby-excercise)
+
 Sample application using sinatra and rspec/capybara for testing.
 
 
