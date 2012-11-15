@@ -1,11 +1,12 @@
 class Game
-  attr_accessor :human, :computer, :current, :other_player, :log
+  attr_accessor :human, :computer, :current, :other_player, :log, :winner
 
   def initialize
     @human = Player.new('human')
     @computer = Player.new('computer')                
     @current = [*@human, @computer].sample
     @log = []
+    @winner = nil
   end
 
   def whos_turn?
@@ -36,6 +37,10 @@ class Game
       @log << "#{current.name} scooores!"
       @current.made_goal
     end        
+  end
+
+  def ended?
+    
   end
     
 end

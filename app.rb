@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'haml'
 require  File.expand_path(File.join(File.dirname(__FILE__), 'shootout'))
-  
+GAMES = {}
 enable :sessions
 
 get '/' do
@@ -10,12 +10,12 @@ end
 
 get '/new-game' do
   id = random_id
-  session["game_#{id}"] = Game.new
+  GAMES["game_#{id}"] ||= Game.new
   redirect "/game/#{id}"
 end    
 
 get '/game/:id' do
-  @game = session["game_#{params[:id]}"]  
+  @game = GAMES["game_#{params[:id]}"]  
   @game.next
   haml :game
 end  

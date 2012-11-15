@@ -26,4 +26,11 @@ describe 'Shootout App' do
     page.should have_content('Now playing')    
   end  
 
+
+  it "should be able to play it" do
+    visit '/'
+    click_link 'Create new game'
+    page.should have_content('Now playing')    
+    page.should have_link('Shoot')    
+  end  
 end
