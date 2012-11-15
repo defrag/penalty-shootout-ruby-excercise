@@ -63,6 +63,7 @@ describe Game do
   it "should not switch turns if game ended" do 
     game = Game.new
     game.stub(:ended?).and_return(true)            
+    game.stub(:winner).and_return(Player.new('human'))            
     game.current.should_not_receive(:shoot)
     game.other_player.should_not_receive(:defend)
     game.next

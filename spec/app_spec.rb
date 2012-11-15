@@ -36,10 +36,14 @@ describe 'Shootout App' do
 
   it "should show game ended when the game ends" do
     Game.any_instance.stub(:ended?).and_return(true)
+    Game.any_instance.stub(:winner).and_return(Player.new('human'))            
+
     visit '/'
     click_link 'Create new game'
     page.should have_content('GAME ENDED!')        
+    page.should have_content('winner is human')
     page.should_not have_link('Shoot')    
+
   end  
 
 end
