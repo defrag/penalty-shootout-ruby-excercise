@@ -46,7 +46,7 @@ describe Game do
     player.score.should == 1
   end  
 
-  it "should not increment players score if shot was successfull" do
+  it "should not increment players score if shot was unsuccessfull" do
     game = Game.new
     
     defend = double("Defend", x:2, y:4)

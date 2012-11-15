@@ -19,7 +19,7 @@ describe Player do
     p.shoot.should be_instance_of(Shot)    
   end 
 
-  it "should return Defend on shoot" do
+  it "should return Defend on defend" do
     p = Player.new('human')
     p.defend.should be_instance_of(Defend)    
   end 
