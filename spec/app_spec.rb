@@ -27,10 +27,19 @@ describe 'Shootout App' do
   end  
 
 
-  it "should be able to play it" do
+  it "should show shoot link to play it" do
     visit '/'
     click_link 'Create new game'
     page.should have_content('Now playing')    
     page.should have_link('Shoot')    
   end  
+
+  it "should show game ended when the game ends" do
+    Game.any_instance.stub(:ended?).and_return(true)
+    visit '/'
+    click_link 'Create new game'
+    page.should have_content('GAME ENDED!')        
+    page.should_not have_link('Shoot')    
+  end  
+
 end

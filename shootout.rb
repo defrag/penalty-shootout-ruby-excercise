@@ -22,25 +22,27 @@ class Game
   end
 
   def next
+    return if ended?
     shot = @current.shoot    
     defense = other_player.defend
     check_shot(shot, defense)    
-    next_turn
+    next_turn if not ended?
   end
    
   def check_shot(shot, defense)        
 
     if shot.x == defense.x and shot.y == defense.y
-      @log << "#{current.name} is shooting but #{other_player.name} saves the day!"
+      @log << "#{current.name} is shooting but #{other_player.name} saves the day!" 
       #handle defense  
     else  
-      @log << "#{current.name} scooores!"
+      @log << "#{current.name} scooores!" 
       @current.made_goal
     end        
   end
 
   def ended?
-    
+    ended = @current.shots.size >= 5
+    ended
   end
     
 end

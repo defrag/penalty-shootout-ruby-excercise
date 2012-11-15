@@ -60,4 +60,12 @@ describe Game do
     player.score.should == 0
   end  
 
+  it "should not switch turns if game ended" do 
+    game = Game.new
+    game.stub(:ended?).and_return(true)            
+    game.current.should_not_receive(:shoot)
+    game.other_player.should_not_receive(:defend)
+    game.next
+  end  
+
 end    

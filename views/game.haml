@@ -6,7 +6,8 @@
     %h1 Now playing
     
     .shoot
-      %a{:href=>''} Shoot
+      - if not @game.ended?
+        %a{:href=>''} Shoot
 
     %p
       Player score:
@@ -14,6 +15,9 @@
     %p
       Computer score:
       =@game.computer.score
+
+    - if @game.ended?
+      %p{:style=> "color:greed"} GAME ENDED!
 
     .log
       %ul
