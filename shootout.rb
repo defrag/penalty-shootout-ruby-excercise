@@ -41,7 +41,20 @@ class Game
   end
 
   def ended?
-    ended = @current.shots.size >= 5
+    ended = false
+    if @current.shots.size >= 5 #5 penalties
+      if @current.score > other_player.score
+        if @current.score - other_player.score >= 2
+          ended = true
+          @winner = @current
+        end  
+      elsif @current.score < other_player.score 
+        if other_player.score - @current.score >= 2
+          ended = true
+          @winner = other_player
+        end  
+      end        
+    end      
     ended
   end
     
