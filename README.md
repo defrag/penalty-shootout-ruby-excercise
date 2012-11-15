@@ -6,7 +6,6 @@ penalty-shootout-ruby-excercise
 Sample application using sinatra and rspec/capybara for testing.
 
 
-
 The goal of the exercise is to build a web server for penalty shootout game, where client competes with the server. Detailed description of the football penalty shoot-out can be found here http://en.wikipedia.org/wiki/Penalty_shoot-out_(association_football) please google / ask if not sure about the rules ;)
 Clients should communicate with the server through JSON API.
 Features:
